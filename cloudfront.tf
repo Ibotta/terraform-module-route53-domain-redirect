@@ -8,9 +8,6 @@ resource "aws_cloudfront_distribution" "redirect" {
       origin_protocol_policy = "http-only"
       origin_ssl_protocols   = ["TLSv1.2"]
     }
-    s3_origin_config {
-      origin_access_identity = aws_cloudfront_origin_access_identity.redirect.cloudfront_access_identity_path
-    }
   }
 
   price_class     = "PriceClass_100"
