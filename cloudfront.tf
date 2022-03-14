@@ -50,9 +50,5 @@ resource "aws_cloudfront_distribution" "redirect" {
   }
 
   wait_for_deployment = false
-  depends_on          = [aws_acm_certificate_validation.validation, aws_cloudfront_distribution.redirect]
-}
-
-resource "aws_cloudfront_origin_access_identity" "redirect" {
-  comment = var.zone
+  depends_on          = [aws_acm_certificate_validation.validation]
 }
