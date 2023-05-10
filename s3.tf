@@ -8,12 +8,6 @@ resource "aws_s3_bucket" "redirect_bucket" {
 
 }
 
-resource "aws_s3_bucket_acl" "redirect_bucket" {
-  bucket = aws_s3_bucket.redirect_bucket.id
-  acl = "public-read"
-
-}
-
 resource "aws_s3_bucket_website_configuration" "redirect_bucket" {
   bucket = aws_s3_bucket.redirect_bucket.id
   redirect_all_requests_to {
