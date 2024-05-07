@@ -53,16 +53,25 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_tags"></a> [tags](#input\_tags) | n/a | `map(string)` | n/a | yes |
-| <a name="input_target_url"></a> [target\_url](#input\_target\_url) | URL to redirect to | `string` | n/a | yes |
 | <a name="input_zone"></a> [zone](#input\_zone) | Route53 zone name | `string` | n/a | yes |
 | <a name="input_allow_overwrite"></a> [allow\_overwrite](#input\_allow\_overwrite) | Allow route53 to overwrite the current rule | `bool` | `false` | no |
+| <a name="input_remove_trailing_slash"></a> [remove\_trailing\_slash](#input\_remove\_trailing\_slash) | Remove trailing slash automicatically added by S3 to the target URL. Conflicts with target\_url. | `map(string)` | `{}` | no |
 | <a name="input_source_subdomain"></a> [source\_subdomain](#input\_source\_subdomain) | FQDN of subdomain that we want to redirect from. | `string` | `""` | no |
+| <a name="input_target_url"></a> [target\_url](#input\_target\_url) | URL to redirect to | `string` | `null` | no |
 
 ## Outputs
 
 No outputs.
 
 ## Changelog
+
+### `1.2.8`
+
+- Add variable `remove_trailing_slash` to allow removing trailing slash automicatically added by S3 to the target URL.
+
+### `1.2.7`
+
+- specify minimum SSL protocol as `TLSv1.2_2021`
 
 ### `1.2.6`
 

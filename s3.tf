@@ -45,7 +45,28 @@ resource "aws_s3_bucket_acl" "redirect_bucket" {
 
 resource "aws_s3_bucket_website_configuration" "redirect_bucket" {
   bucket = aws_s3_bucket.redirect_bucket.id
-  redirect_all_requests_to {
-    host_name = var.target_url
+  dynamic "redirect_all_requests_to" {
+    for_each = var.target_url != null ? [1] : []
+    content {
+      host_name = var.target_url
+    }
+  }
+
+  dynamic "index_document" {
+    for_each = length(keys(var.remove_trailing_slash)) > 0 ? [1] : []
+    content {
+      suffix = "index.html"
+    }
+  }
+
+  dynamic "routing_rule" {
+    for_each = length(keys(var.remove_trailing_slash)) > 0 ? [1] : []
+    content {
+      redirect {
+        host_name        = try(var.remove_trailing_slash.host_name, null)
+        replace_key_with = try(var.remove_trailing_slash.replace_key_with, null)
+      }
+    }
+
   }
 }
