@@ -2,7 +2,7 @@
 
 ### `1.2.8`
 
-- Add variable `remove_trailing_slash` to allow removing trailing slash automicatically added by S3 to the target URL.
+- Add variable `remove_trailing_slash` to allow removing trailing slash automatically added by S3 to the target URL.
 
 ### `1.2.7`
 

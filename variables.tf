@@ -22,7 +22,7 @@ variable "allow_overwrite" {
 }
 
 variable "remove_trailing_slash" {
-  description = "Remove trailing slash automicatically added by S3 to the target URL. Conflicts with target_url."
+  description = "Remove trailing slash automatically added by S3 to the target URL. Conflicts with target_url."
   type        = map(string)
   default     = {}
 }
