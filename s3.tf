@@ -48,7 +48,8 @@ resource "aws_s3_bucket_website_configuration" "redirect_bucket" {
   dynamic "redirect_all_requests_to" {
     for_each = var.target_url != null ? [1] : []
     content {
-      host_name = var.target_url
+      host_name = startswith(var.target_url, "https://") ? trimprefix(var.target_url, "https://") : var.target_url
+      protocol  = "https"
     }
   }
 
