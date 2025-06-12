@@ -58,13 +58,16 @@ No modules.
 | <a name="input_remove_trailing_slash"></a> [remove\_trailing\_slash](#input\_remove\_trailing\_slash) | Remove trailing slash automatically added by S3 to the target URL. Conflicts with target\_url. | `map(string)` | `{}` | no |
 | <a name="input_source_subdomain"></a> [source\_subdomain](#input\_source\_subdomain) | FQDN of subdomain that we want to redirect from. | `string` | `""` | no |
 | <a name="input_target_url"></a> [target\_url](#input\_target\_url) | URL to redirect to | `string` | `null` | no |
-| <a name="input_ttl"></a> [ttl](#input\_ttl) | TTL object to hold the TTL values for min, max and default for the record. | <pre>map(object({<br>    min     = number<br>    max     = number<br>    default = number<br>  }))</pre> | <pre>{<br>  "default": 31536000,<br>  "max": 31536000,<br>  "min": 31536000<br>}</pre> | no |
+| <a name="input_ttl"></a> [ttl](#input\_ttl) | TTL object to hold the TTL values for min, max and default for the record. | <pre>object({<br/>    min     = number<br/>    max     = number<br/>    default = number<br/>  })</pre> | <pre>{<br/>  "default": 31536000,<br/>  "max": 31536000,<br/>  "min": 31536000<br/>}</pre> | no |
 
 ## Outputs
 
 No outputs.
 
 ## Changelog
+
+### `1.2.10`
+- QOL updates -- updating Github Action workflows, updating format and docs script, and running format.
 
 ### `1.2.9`
 - Add variable `ttl` to allow setting the min, max, and default cache TTL for Cloudfront.

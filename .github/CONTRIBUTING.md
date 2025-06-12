@@ -2,18 +2,14 @@
 
 ### Prerequisites
 
-Install the following:
+We use `mise-en-place` as a tool manager.  Install the following:
 
-- [terraform-docs](https://terraform-docs.io/)
-- [asdf-vm](https://asdf-vm.com/)
+- [mise-en-place](https://mise.jdx.dev/)
 
-#### MacOS
+Once installed, you can install our version of `terraform` and `terraform-docs` with:
 
 ```sh
-brew install npm
-npm install -g yo
-asdf plugin-add terraform-docs
-asdf install
+mise install
 ```
 
 ## Important Notes
@@ -77,7 +73,7 @@ module "module_name" {
 
 This module is configured through [terraform-docs](https://github.com/terraform-docs/terraform-docs) and can be updated by adjusting either `docs-header.md` or the variable/output descriptions and re-running the following:
 
-Short version: Run `./scripts/tf-gen.sh`.
+Short version: Run `./scripts/terraform_format_and_docs.sh`.
 
 This script runs `terraform fmt` and `terraform-docs` on the module.
 
@@ -94,4 +90,4 @@ In order to update the documentation the following steps should be taken:
 1. In `variables.tf` all `variables` should have a complete `description` field. 
 1. All `output` attributes should include a comment immediately preceding the output defintion; this comment becomes the description of the attribute in the documentation. 
 1. Add a `CHANGELOG.md` record indicating the change and the new version.
-1. Run `./scripts/tf-gen.sh`.
+1. Run `./scripts/terraform_format_and_docs.sh`.

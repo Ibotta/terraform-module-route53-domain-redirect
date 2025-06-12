@@ -1,4 +1,4 @@
-name: Build
+name: Terraform Build
 
 on:
   push:
@@ -7,26 +7,27 @@ on:
       # This helps with cache performance:
       #   https://github.com/actions/cache/blob/main/tips-and-workarounds.md#use-cache-across-feature-branches
       - main
-    paths:
-      - '**.tf'
   workflow_dispatch:  # Allows to trigger workflow manually
   pull_request:
-    paths:
-      - '**.tf'
 
 jobs:
   terraform_check:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # 4.2.2
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
-    - name: Cache ASDF
-      id: cache-asdf
-      uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # 4.2.0
+    - name: Check for changed files
+      uses: tj-actions/changed-files@ed68ef82c095e0d48ec87eccea555d944a631a4c # v46.0.5
+      id: changed-files
       with:
-        path: ~/.asdf
-        key: ${{ runner.os }}-asdf
+        files: |
+          *.tf
+
+    - name: Install mise
+      uses: jdx/mise-action@13abe502c30c1559a5c37dff303831bab82c9402 # 2.2.3
+      if: steps.changed-files.outputs.any_changed == 'true'
 
     - name: Check Terraform Formatting and Docs
       run: ./scripts/terraform_format_and_docs.sh
+      if: steps.changed-files.outputs.any_changed == 'true'
