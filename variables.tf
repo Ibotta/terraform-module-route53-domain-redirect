@@ -29,7 +29,7 @@ variable "remove_trailing_slash" {
 
 variable "ttl" {
   description = "TTL object to hold the TTL values for min, max and default for the record."
-  type       = object({
+  type = object({
     min     = number
     max     = number
     default = number
