@@ -1,5 +1,8 @@
 ## Changelog
 
+### `1.2.10`
+- QOL updates -- updating Github Action workflows, updating format and docs script, and running format.
+
 ### `1.2.9`
 - Add variable `ttl` to allow setting the min, max, and default cache TTL for Cloudfront.
   - Defaults to the original value of "31536000" (1 year).
